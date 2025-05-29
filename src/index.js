@@ -17,7 +17,7 @@ function refreshWeather(response) {
   temperatureElement.innerHTML = Math.round(temperature);
   iconElement.innerHTML = `<img src="${response.data.condition.icon_url}" class="weather-app-icon" />`;
 
-  getForecast("Lisbon");
+  getForecast("Rome");
   }
 
 function formatDate(date) {
@@ -47,7 +47,7 @@ function handleSearchSubmit(event) {
 }
 
 function formatDay (timestamp) {
-  let date = new Date (timestamp +1000);
+  let date = new Date (timestamp * 1000);
   let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return days[date.getDay()];
@@ -66,7 +66,7 @@ function displayForecast(response) {
   let forecastHtml = "";
 
   response.data.daily.forEach(function (day, index) {
-    if(index <5) {
+    if (index < 5) {
       forecastHtml = 
         forecastHtml +
         `
@@ -94,4 +94,4 @@ function displayForecast(response) {
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", handleSearchSubmit);
 
-searchCity("Lisbon");
+searchCity("Rome");
